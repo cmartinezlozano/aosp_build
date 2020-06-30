@@ -120,13 +120,16 @@ GAPPS_PRODUCT_PACKAGES += \
     PrebuiltExchange3Google \
     PrebuiltGmail
 
+ifeq ($(GAPPS_NO_LAUNCHER),true)
+GAPPS_FORCE_PIXEL_LAUNCHER := false
+else
 ifneq ($(filter 26,$(call get-allowed-api-levels)),)
 GAPPS_FORCE_PIXEL_LAUNCHER := true
 else
 GAPPS_PRODUCT_PACKAGES += \
     GoogleNow
 endif
-
+endif
 ifeq ($(filter 23,$(call get-allowed-api-levels)),)
 GAPPS_PRODUCT_PACKAGES += \
     GoogleTTS
